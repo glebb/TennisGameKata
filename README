@@ -1,0 +1,16 @@
+Tennis Game Kata with Python
+http://python-mock.sourceforge.net/
+https://github.com/bebraw/speccer
+
+Scriptable Simulator included
+
+The idea is to implement tennisgame.spec and tennisgame.py.
+The goal is scoring logic for tennis game.
+
+Simulator can be used to visualize progress, but for it to work
+there's some assumptions. Check simulator.py and Presenter Class.
+
+Example implementation is in example folder. Copy to same folder
+as simulator to try it out.
+
+Use "run_specs" to run unit tests. Python mock is also needed. 
