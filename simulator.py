@@ -2,6 +2,10 @@ from Tkinter import *
 from tennisgame import *
 import time
 
+'''
+TKinter code based on Fredrik Lundh’s A Simple Animation Engine
+'''
+
 class Presenter(object):
     
     def __init__(self, model):
