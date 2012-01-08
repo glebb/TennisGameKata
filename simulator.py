@@ -31,6 +31,8 @@ class Presenter(object):
             score = self.model.score()
         except AttributeError:
             print 'implement score() or adapt'
+        except:
+            pass #use default value for any other error
         for view in self.views:
             view.setScore(score)
 
