@@ -4,8 +4,8 @@ import time
 
 class Presenter(object):
     
-    def __init__(self, view, model):
-        self.view = view
+    def __init__(self, model):
+        self.views = []
         self.model = model
 
     def ballGoesOverRightSide(self):
@@ -22,13 +22,17 @@ class Presenter(object):
             print 'implement playerTwoScores() or adapt...'
         self._updateScore()
 
+    def addView(self, view):
+        self.views.append(view)
+
     def _updateScore(self):
         score = "0 - 0"
         try:
             score = self.model.score()
         except AttributeError:
             print 'implement score() or adapt'
-        self.view.setScore(score)
+        for view in self.views:
+            view.setScore(score)
 
 
 class TennisBall:
@@ -85,9 +89,9 @@ class TennisBall:
 
 
 class Simulator(object):
-    def __init__(self):
-        self.model = TennisGame()
-        self.presenter = Presenter(self, self.model)
+    def __init__(self, presenter):
+        self.presenter = presenter
+        self.presenter.addView(self)
 
         self.root = Tk()
         self.root.title("Tennis Simulator")
@@ -166,5 +170,7 @@ class Simulator(object):
         self.root.update() # process events
 
 if __name__ == '__main__':
-    s = Simulator()
+    model = TennisGame()
+    presenter = Presenter(model)
+    s = Simulator(presenter)
     s.run()

@@ -5,7 +5,8 @@ from simulator import Presenter
 set up
     mock_view = mock.Mock()
     mock_model = mock.Mock()
-    p = Presenter(mock_view, mock_model)
+    p = Presenter(mock_model)
+    p.addView(mock_view)
     
 
 when ball goes over right side player one scores
