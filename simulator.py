@@ -30,9 +30,11 @@ class Presenter(object):
         self.views.append(view)
 
     def _updateScore(self):
-        score = "0 - 0"
+        score = ""
         try:
-            score = self.model.score()
+            score = self.model.score() 
+            if type(score) == tuple:
+                score = self._prettyPrint(score)
         except AttributeError:
             print 'implement score() or adapt'
         except:
@@ -40,6 +42,9 @@ class Presenter(object):
         for view in self.views:
             view.setScore(score)
 
+    def _prettyPrint(self, result):
+        return str(result[0]) + " - " + str(result[1])        
+            
 
 class TennisBall:
     '''Draws the moving ball to canvas, takes view to inform
@@ -130,7 +135,7 @@ class Simulator(object):
         self.timeToQuit = False
 
         # Script, True means player one wins. False player two wins.
-        self.script = (True, False, True, False, True, False, True, False, True, True)
+        self.script = (True, True, True, True)
 
     def run(self):
         try:
@@ -148,9 +153,9 @@ class Simulator(object):
             pass # avoid errors when the window is closed        
 
     def setScore(self, score):
-        if score.find('wins') != -1: #hack to end simulator and print dialog about winning player
+        if score.find('win') != -1: #hack to end simulator and print dialog about winning player
             message = 'wins'
-            if score.startswith('wins'):
+            if score.startswith('win'):
                 message = 'Player 1 ' + message
             else:
                 message = 'Player 2 ' + message
