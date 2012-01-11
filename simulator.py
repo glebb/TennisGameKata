@@ -136,7 +136,7 @@ class Simulator(object):
         self.presenter.updateScore()
         
         # Script, True means player one wins. False player two wins.
-        self.script = (True, False, True, True, True)
+        self.script = (True, False, True, False, True, False, True, False, True, True)
 
     def run(self):
         try:
