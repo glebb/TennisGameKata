@@ -135,7 +135,7 @@ class Simulator(object):
         self.timeToQuit = False
 
         # Script, True means player one wins. False player two wins.
-        self.script = (True, True, True, True)
+        self.script = (True, False, True, True, True)
 
     def run(self):
         try:
