@@ -17,19 +17,19 @@ class Presenter(object):
             self.model.playerOneScores()
         except AttributeError:
             print 'implement playerOneScores() or adapt...'
-        self._updateScore()
+        self.updateScore()
 
     def ballGoesOverLeftSide(self):
         try:
             self.model.playerTwoScores()
         except AttributeError:
             print 'implement playerTwoScores() or adapt...'
-        self._updateScore()
+        self.updateScore()
 
     def addView(self, view):
         self.views.append(view)
 
-    def _updateScore(self):
+    def updateScore(self):
         score = ""
         try:
             score = self.model.score() 
@@ -113,7 +113,6 @@ class Simulator(object):
         self.playerTwoName = Label(self.scoreframe, text="Player 2", font=("Helvetica", 16))
         self.scoreVar = StringVar()
         self.playerScores = Label(self.scoreframe, textvariable=self.scoreVar, font=("Helvetica", 16))
-        self.scoreVar.set("0 - 0")
         self.playerOneName.pack(side=LEFT)
         self.playerTwoName.pack(side=RIGHT)
         self.playerScores.pack(side=BOTTOM)
@@ -134,6 +133,8 @@ class Simulator(object):
 
         self.timeToQuit = False
 
+        self.presenter.updateScore()
+        
         # Script, True means player one wins. False player two wins.
         self.script = (True, False, True, True, True)
 
